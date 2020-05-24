@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
@@ -11,7 +12,13 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: { presets: ["@babel/env", "@babel/preset-react"] },
+        options: {
+          presets: ["@babel/env", "@babel/preset-react"],
+          plugins: [
+            "@babel/plugin-proposal-class-properties",
+            "@babel/plugin-transform-react-jsx-source",
+          ],
+        },
       },
       {
         test: /\.css$/,
@@ -22,7 +29,7 @@ module.exports = {
   resolve: { extensions: ["*", ".js", ".jsx"] },
   output: {
     path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
+    publicPath: "/",
     filename: "bundle.js",
   },
   devServer: {
@@ -32,6 +39,7 @@ module.exports = {
     hotOnly: true,
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new FaviconsWebpackPlugin("./src/favicon.ico"),
   ],
