@@ -2,6 +2,8 @@ const path = require("path");
 const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+// for production
+//const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -42,5 +44,10 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new FaviconsWebpackPlugin("./src/favicon.ico"),
+    // for production
+    // new HtmlWebpackPlugin({
+    //   template: "./public/index.html",
+    //   favicon: "./src/favicon.ico",
+    // }),
   ],
 };
