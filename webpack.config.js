@@ -41,10 +41,12 @@ module.exports = {
     hotOnly: true,
   },
   plugins: [
+    // for development
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new FaviconsWebpackPlugin("./src/favicon.ico"),
     // for production
+
     // new HtmlWebpackPlugin({
     //   template: "./public/index.html",
     //   favicon: "./src/favicon.ico",
